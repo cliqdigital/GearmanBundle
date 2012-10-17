@@ -47,13 +47,6 @@ class GearmanCheckCommand extends ContainerAwareCommand
             $output->writeln('<comment>* Checking gearman extension...</comment>');
         }
 
-        $gearmanSettings = $this->getContainer()->get('gearman.settings');
-        if (!$gearmanSettings->existsSettings()) {
-            throw new NoSettingsFileExistsException($this->getFilePath());
-        } else {
-            $output->writeln('<comment>* Checking gearman settings file...</comment>');
-        }
-
         $output->writeln('<comment>Gearman is succesfuly installed</comment>');
     }
 }
