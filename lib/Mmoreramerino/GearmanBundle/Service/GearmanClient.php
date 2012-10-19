@@ -97,7 +97,7 @@ class GearmanClient extends GearmanService
      *
      * @return mixed  Return result of the GearmanClient call
      */
-    private function doEnqueue(Array $worker, $params = '', $method = 'do', $unique = null)
+    private function doEnqueue($worker, $params = '', $method = 'do', $unique = null)
     {
         $gmclient = new \GearmanClient();
         $this->assignServers($gmclient);

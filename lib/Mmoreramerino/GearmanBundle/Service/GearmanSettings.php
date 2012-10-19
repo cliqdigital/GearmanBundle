@@ -2,8 +2,9 @@
 
 namespace Mmoreramerino\GearmanBundle\Service;
 
-use Symfony\Component\Yaml\Parser;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Yaml\Parser;
 use Mmoreramerino\GearmanBundle\Exceptions\NoSettingsFileExistsException;
 
 /**
@@ -20,6 +21,12 @@ class GearmanSettings extends ContainerAware
      */
     private $settings = null;
 
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        parent::setContainer($container);
+        $this->setSettings($container->getParameter('gearman_settings'));
+    }
 
     /**
      * Return Gearman settings, previously loaded by method load()

@@ -29,6 +29,11 @@ class MmoreramerinoGearmanExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $config);
 
+        // remove duplicate servers
+        if (isset($config['defaults'], $config['defaults']['servers'])) {
+            $config['defaults']['servers'] = array_unique($config['defaults']['servers'], SORT_REGULAR);
+        }
+
         $container->setParameter('gearman_servers', $config['defaults']['servers']);
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

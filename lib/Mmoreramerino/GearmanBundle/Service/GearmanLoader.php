@@ -53,18 +53,14 @@ class GearmanLoader extends ContainerAware
      */
     public function load(Cache $cache)
     {
-        if (version_compare(\Doctrine\Common\Version::VERSION, '2.2.0-DEV', '>=')) {
-            // Register the ORM Annotations in the AnnotationRegistry
-            AnnotationRegistry::registerFile(__DIR__ . "/../Driver/Gearman/Work.php");
-            AnnotationRegistry::registerFile(__DIR__ . "/../Driver/Gearman/Job.php");
+        // Register the ORM Annotations in the AnnotationRegistry
+        AnnotationRegistry::registerFile(__DIR__ . "/../Driver/Gearman/Work.php");
+        AnnotationRegistry::registerFile(__DIR__ . "/../Driver/Gearman/Job.php");
 
+        if (version_compare(\Doctrine\Common\Version::VERSION, '2.2.0-DEV', '>=')) {
             $reader = new \Doctrine\Common\Annotations\SimpleAnnotationReader();
             $reader->addNamespace('Mmoreramerino\GearmanBundle\Driver');
         } else {
-            // Register the ORM Annotations in the AnnotationRegistry
-            AnnotationRegistry::registerFile(__DIR__ . "/../Driver/Gearman/Work.php");
-            AnnotationRegistry::registerFile(__DIR__ . "/../Driver/Gearman/Job.php");
-
             $reader = new AnnotationReader();
             $reader->setDefaultAnnotationNamespace('Mmoreramerino\GearmanBundle\Driver\\');
         }
@@ -97,6 +93,7 @@ class GearmanLoader extends ContainerAware
                 }
             }
         }
+
 
         return $cache->save(MmoreramerinoGearmanBundle::CACHE_ID, $workerCollection);
     }
