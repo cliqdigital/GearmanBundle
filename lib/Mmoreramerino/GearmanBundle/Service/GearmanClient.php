@@ -294,6 +294,16 @@ class GearmanClient extends GearmanService
         return $this->enqueue($name, $params, 'doLowBackground', $unique);
     }
 
+    /**
+     * Get job status.
+     * @param string The handle of the job to retrieve the status of.
+     * @return array The status of the job.
+     */
+    public function getJobStatus($handle)
+    {
+        return $this->gearman->jobStatus($handle);
+    }
+
 
     /**
      * Task methods
