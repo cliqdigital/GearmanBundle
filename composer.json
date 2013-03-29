@@ -21,6 +21,6 @@
 		"liip/doctrine-cache-bundle": "dev-master"
     },
     "autoload": {
-        "psr-0": { "Mmoreramerino\\GearmanBundle": "lib/" }
+        "psr-0": { "Mmoreramerino\\GearmanBundle\\": "lib/" }
     }
 }
